@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="smart_icone.ico">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+  
+    <title>Smart Data</title>
+</head>
+<body>
+  <div class="banner container-fluid">
+    <div class="banner-container">
+      <div class="col-md-3">   
+        <h2 class="text-left">
+          <a href="https://smartie.com.br" target="_blank">
+            <img src="logo.png" style="width: 152px;">
+          </a>
+        </h2>   
+      </div>
+      
+      <div class="col-md-9 container">
+        <h1 class="banner-title text-left">
+          <!-- Substitua o texto pelo elemento img -->
+          <img src="SmartDataLogo.png" alt="Smart Data" id="logo-smart-data">
+        </h1>
+      </div>
+    </div>    
+  </div>        
+  <div class="container">
+
+    <!--Seletor Setor e Segmentos -->
+    <div class="row align-items-center padding-top-50">
+      <div class="col" style="display: block;">
+        <div class="row align-items-center align-right mb-3 col-sm-12">
+          <select id="setor" class="form-select" aria-label="Default select example" onchange="CarregaSeguimentos()">
+            <option value="" selected>Selecione um setor</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-1 next">
+        <img src="next.png" />
+      </div>
+      <div class="col">
+        <div class="row align-items-center align-right mb-3 col-sm-12">
+          <select id="segmentos" class="form-select" aria-label="Default select example" onchange="CarregaEmpresas()">
+            <option value="" selected>Selecione um segmento</option>
+          </select>
+        </div>
+      </div>
+      <div class="col" style="display: none;">
+        <div class="row align-items-center align-right mb-3 col-sm-12">
+          <select id="empresas" class="form-select" aria-label="Default select example" type="multiple">
+            <option value="" selected>selecione</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- Seletores Individuais -->
+<div class="row align-items-center padding-top-50">
+  <!-- Seletor de Porte -->
+  <div class="col">
+    <div class="row align-items-center align-right mb-3 col-sm-12">
+        <select id="porte" class="form-select" aria-label="Default select example" onchange="handlePorteChange()">
+          <option value="" selected>Selecione um porte</option>
+        </select>
+    </div>
+  </div>
+
+  <!-- Seletor de Região -->
+  <div class="col">
+    <div class="row align-items-center align-right mb-3 col-sm-12">
+        <select id="regiao" class="form-select" aria-label="Seletor de Região" onchange="handleRegiaoChange()">
+          <option value="" selected>Selecione uma região</option>
+        </select>
+    </div>
+  </div>
+
+  <!-- Seletor de UF -->
+  <div class="col">
+    <div class="row align-items-center align-right mb-3 col-sm-12">
+        <select id="uf" class="form-select" aria-label="Seletor de UF" onchange="handleUFChange()">
+          <option value="" selected>Todas as UFs</option>
+        </select>
+    </div>
+  </div>
+</div>
+     
+
+
+    
+    <div class="row align-items-center">
+      <div id="listEmpresas" class="mb-3 col-sm-12">
+        
+      </div>
+    </div>
+    <div class="row align-items-center">          
+          <div class="col">
+
+            <div id="chart-teste" style="display: none;">
+              <h3 class="chart-title">
+                Chart DIV
+              </h3>
+              <div id="chart_div" class="chart"></div>  
+              <div class="card">
+                <div id="" class="card-body">
+                  <div id="campos">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <div class="input-group input-group-sm mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">2019</span>
+                          <input type="text" class="form-control money" id="input-19" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="input-group input-group-sm mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">2020</span>
+                          <input type="text" class="form-control money" id="input-20" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="input-group input-group-sm mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">2021</span>
+                          <input type="text" class="form-control money" id="input-21" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="input-group input-group-sm mb-3">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">2022</span>
+                          <input type="text" class="form-control money" id="input-22" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" >
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">2023</span>
+                            <input type="text" class="form-control money" id="input-23" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                      </div>
+                      <div class="col">
+                        <button type="submit" class="btn btn-primary mb-3" onclick="gerarGrafico()">Gerar gráfico</button>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  
+  <div class="container-fluid">    
+    <div class="row align-items-center">
+
+      <!--Seletores -->
+      <div class="row align-items-center grid-color-gray">
+        <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+            
+        </div>
+        <div class="col graficos-box">
+          <div id="msg-cliente" class="msg-chart-cliente">Seus dados aparecerão aqui.</div>
+        </div>
+        <div class="col graficos-box">
+          <div class="align-items-center">
+            <select id="empresa1" class="form-select" aria-label="Default select example" type="multiple" onchange="GeraGrafico('RL', 'empresa1', 1)">
+              <option value="" selected>Selecione uma empresa</option>
+            </select>
+          </div>                   
+        </div>
+        <div class="col graficos-box">
+          <div class="align-items-center">
+            <select id="empresa2" class="form-select" aria-label="Default select example" type="multiple" onchange="GeraGrafico('RL', 'empresa2', 2)">
+              <option value="" selected>Selecione uma empresa</option>
+            </select>
+          </div>               
+        </div>
+        <div id="col-1-3" class="col graficos-box">
+          <div class="align-items-center">
+            <select id="empresa3" class="form-select" aria-label="Default select example" type="multiple" onchange="GeraGrafico('RL', 'empresa3', 3)">
+              <option value="" selected>Selecione uma empresa</option>
+            </select>
+          </div>                   
+        </div>
+      </div>
+
+      <!-- Receita Líquida -->
+      <div class="row align-items-center grid-color-gray">
+        <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+            <h4 class="chart-title margin-title font-dm-sans">
+                Receita Líquida
+            </h4>
+            <small class="subtitulo text-muted">(Em Milhões)</small>
+        </div>
+        <div class="col graficos-box">
+          <div id="cliente6" class="graficos-border">
+              <img src="bar-chart.png"/>
+          </div>
+        </div>
+        <div class="col graficos-box">
+        
+          <div id="indice16" class="graficos-border">
+              <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div class="col graficos-box">
+          
+          <div id="indice17" class="graficos-border">
+              <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div id="col-2-3"  class="col graficos-box">
+          
+          <div id="indice18" class="graficos-border">
+              <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+      </div>
+
+      <!-- Custos -->
+      <div class="row align-items-center">
+        <div class="col-md-2 d-flex flex-column justify-content-center align-items-center"> 
+            <h4 class="chart-title margin-title font-dm-sans">
+                Custos
+            </h4>
+            <small class="subtitulo text-muted">(Em Milhões)</small>
+        </div>
+        <div class="col graficos-box">
+            <div id="cliente7" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>
+        </div>
+        <div class="col graficos-box">
+            <div id="indice19" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+        <div class="col graficos-box">
+            <div id="indice20" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+        <div  id="col-3-3"  class="col graficos-box">
+            <div id="indice21" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+      </div>
+
+      <!-- EBITDA -->
+      <div class="row align-items-center grid-color-gray">
+        <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+            <h4 class="chart-title margin-title font-dm-sans">
+                EBITDA
+            </h4>
+            <small class="subtitulo text-muted">(Em Milhões)</small>
+        </div>
+        <div class="col graficos-box">
+            <div id="cliente5" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>
+        </div>
+        <div class="col graficos-box">
+            <div id="indice13" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+        <div class="col graficos-box">
+            <div id="indice14" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+        <div  id="col-4-3"  class="col graficos-box">
+            <div id="indice15" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+      </div>
+
+      <!-- Margem Operacional -->
+      <div class="row align-items-center">
+        <div class="col-md-2">
+          <h4 class="chart-title font-dm-sans">
+            Margem Operacional
+          </h4>
+          <small class="subtitulo text-muted">(Em Percentual)</small>
+        </div>
+        <div class="col graficos-box">
+          <div id="cliente3" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>
+        </div>
+        <div class="col graficos-box">
+          <div id="indice7" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div class="col graficos-box">
+          <div id="indice8" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div  id="col-5-3"  class="col graficos-box">
+          <div id="indice9" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+      </div>
+
+      <!-- Lucro Líquido -->
+      <div class="row align-items-center grid-color-gray">
+        <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+            <h4 class="chart-title margin-title font-dm-sans">
+                Lucro Líquido
+            </h4>
+            <small class="subtitulo text-muted">(Em Milhões)</small>
+        </div>
+        <div class="col graficos-box">
+            <div id="cliente8" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>
+        </div>
+        <div class="col graficos-box">
+            <div id="indice22" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+        <div class="col graficos-box">
+            <div id="indice23" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+        <div  id="col-6-3"  class="col graficos-box">
+            <div id="indice24" class="graficos-border">
+                <img src="bar-chart.png"/>
+            </div>                    
+        </div>
+      </div>
+
+      <!-- Margem Líquida -->
+      <div class="row align-items-center">
+        <div class="col-md-2">
+          <h4 class="chart-title font-dm-sans">
+            Margem Líquida 
+          </h4>
+          <small class="subtitulo text-muted">(Em Percentual)</small>
+        </div>
+        <div class="col graficos-box">
+          <div id="cliente4" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>
+        </div>
+        <div class="col graficos-box">
+          <div id="indice10" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div class="col graficos-box">
+          <div id="indice11" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div  id="col-7-3"  class="col graficos-box">
+          <div id="indice12" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+      </div>
+
+      <!-- Alavancagem Financeira -->
+      <div class="row align-items-center grid-color-gray">
+        <div class="col-md-2">
+          <h4 class="chart-title font-dm-sans">
+            Alavancagem Financeira
+          </h4>
+          <small class="subtitulo text-muted">(Em Percentual)</small>
+        </div>
+        <div class="col graficos-box">
+          <div id="cliente1" class="graficos-border">           
+            <img src="bar-chart.png"/>
+          </div>
+        </div>
+        <div class="col graficos-box">
+          <div id="indice1" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div class="col graficos-box">
+          <div id="indice2" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div  id="col-8-3"  class="col graficos-box">
+          <div id="indice3" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+      </div>
+
+      <!-- Liquidez -->
+      <div class="row align-items-center">
+        <div class="col-md-2">
+          <h4 class="chart-title font-dm-sans">
+            Liquidez
+          </h4>
+        </div>
+        <div class="col graficos-box">
+          <div id="cliente2" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>
+        </div>
+        <div class="col graficos-box">
+          <div id="indice4" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div class="col graficos-box">
+          <div id="indice5" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+        <div  id="col-9-3"  class="col graficos-box ">
+          <div id="indice6" class="graficos-border">
+            <img src="bar-chart.png"/>
+          </div>                    
+        </div>
+      </div>
+
+      <!-- ROE -->
+      <div class="row align-items-center grid-color-gray">
+          <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+              <h4 class="chart-title margin-title font-dm-sans">
+                  ROE
+              </h4>
+              <small class="subtitulo text-muted">(Em Percentual)</small>
+          </div>
+          <div class="col graficos-box">
+              <div id="cliente9" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>
+          </div>
+          <div class="col graficos-box">
+              <div id="indice25" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>                    
+          </div>
+          <div class="col graficos-box">
+              <div id="indice26" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>                    
+          </div>
+          <div id="col-10-3" class="col graficos-box">
+              <div id="indice27" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>                    
+          </div>
+      </div>
+
+      <!-- Dívida Líquida -->
+      <div class="row align-items-center grid-color-botton-gray">
+          <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
+              <h4 class="chart-title margin-title font-dm-sans">
+                  Dívida Líquida
+              </h4>
+              <small class="subtitulo text-muted">(Em Milhões)</small>
+          </div>
+          <div class="col graficos-box">
+              <div id="cliente10" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>
+          </div>
+          <div class="col graficos-box">
+              <div id="indice28" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>                    
+          </div>
+          <div class="col graficos-box">
+              <div id="indice29" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>                    
+          </div>
+          <div id="col-11-3" class="col graficos-box">
+              <div id="indice30" class="graficos-border">
+                  <img src="bar-chart.png"/>
+              </div>                    
+          </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- ------------------------------------------------ --->
+  <div id="tpE" class="card-body"></div>
+  <div id="tpRL" class="card-body"></div>
+
+  <!-- Dados do cliente -->
+  <!-- <div class="row align-items-center margin-bottom-40">
+    <h4 class="title-page">
+      Gostaria de se comparar com as grandes empresas?
+    </h4>
+    <div class="align-items-center">
+      <p style="text-align: center;">
+        <button class="btn btn-primary" type="button" id="btnCamposClientes">
+          Insira e compare os seus dados
+        </button>
+      </p>
+    </div>
+    <div class="row align-items-center">
+      <div class="col next vertical-img">
+        <img src="right-arrow.png" style="width: 22px;" />
+      </div>
+    </div>
+  </div>
+  <div  class="row align-items-center box-campos-cliente">
+    <div class="card card-body">
+      <h2 class="title-page">
+        Informe os dados para comparar a sua empresa com as demais
+      </h2>
+      <h4 class="chart-title font-dm-sans">
+        Não tem todos os dados? Não se preocupe, informe somente os dados de 2023.
+      </h4>
+      <div class="row grid-dados-cliente grid-dados-cliente-gray">
+        <div class="col-md-3 margin-auto ">
+          Ativo Circulante
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoCirculante2019" placeholder="Dados de 2019">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoCirculante2020" placeholder="Dados de 2020">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoCirculante2021" placeholder="Dados de 2021">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoCirculante2022" placeholder="Dados de 2022">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoCirculante2023" placeholder="Dados de 2023">
+        </div>
+      </div>
+      <div class="row grid-dados-cliente ">
+        <div class="col-md-3 margin-auto">
+          Ativo Total
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoTotal2019" placeholder="Dados de 2019">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoTotal2020" placeholder="Dados de 2020">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoTotal2021" placeholder="Dados de 2021">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoTotal2022" placeholder="Dados de 2022">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="ativoTotal2023" placeholder="Dados de 2023">
+        </div>
+      </div>
+      <div class="row grid-dados-cliente grid-dados-cliente-gray">
+        <div class="col-md-3 margin-auto">
+          Passivo Circulante
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoCirculante2019" placeholder="Dados de 2019">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoCirculante2020" placeholder="Dados de 2020">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoCirculante2021" placeholder="Dados de 2021">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoCirculante2022" placeholder="Dados de 2022">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoCirculante2023" placeholder="Dados de 2023">
+        </div>
+      </div>
+      <div class="row grid-dados-cliente ">
+        <div class="col-md-3 margin-auto">
+          Passivo Não Circulante
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoNaoCirculante2019" placeholder="Dados de 2019">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoNaoCirculante2020" placeholder="Dados de 2020">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoNaoCirculante2021" placeholder="Dados de 2021">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoNaoCirculante2022" placeholder="Dados de 2022">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="passivoNaoCirculante2023" placeholder="Dados de 2023">
+        </div>
+      </div>
+      <div class="row grid-dados-cliente" style="display: none;">
+        <div class="col-md-3 margin-auto">
+          Patrimônio Líquido
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="patrimonioLiquido2019" placeholder="Dados de 2019" disabled>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="patrimonioLiquido2020" placeholder="Dados de 2020" disabled>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="patrimonioLiquido2021" placeholder="Dados de 2021" disabled>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="patrimonioLiquido2022" placeholder="Dados de 2022" disabled>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="patrimonioLiquido2023" placeholder="Dados de 2023" disabled>
+        </div>
+      </div>
+      <div class="row grid-dados-cliente grid-dados-cliente-gray">
+        <div class="col-md-3 margin-auto">
+          Receita Liquida de impostos
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="faturamentoLiquido2019" placeholder="Dados de 2019">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="faturamentoLiquido2020" placeholder="Dados de 2020">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="faturamentoLiquido2021" placeholder="Dados de 2021">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="faturamentoLiquido2022" placeholder="Dados de 2022">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="faturamentoLiquido2023" placeholder="Dados de 2023">
+        </div>
+      </div>
+      <div class="row grid-dados-cliente ">
+        <div class="col-md-3 margin-auto">
+          Custo de Produtos e Serviços Vendidos
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="custosGerais2019" placeholder="Dados de 2019">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="custosGerais2020" placeholder="Dados de 2020">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="custosGerais2021" placeholder="Dados de 2021">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="custosGerais2022" placeholder="Dados de 2022">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="custosGerais2023" placeholder="Dados de 2023">
+        </div>
+      </div>
+      <div class="row grid-dados-cliente grid-dados-cliente-gray">
+        <div class="col-md-3 margin-auto">
+          Lucro Líquido
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="lucroLiquido2019" placeholder="Dados de 2019">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="lucroLiquido2020" placeholder="Dados de 2020">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="lucroLiquido2021" placeholder="Dados de 2021">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="lucroLiquido2022" placeholder="Dados de 2022">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control money" id="lucroLiquido2023" placeholder="Dados de 2023">
+        </div>
+      </div>
+      <div class="row grid-dados-cliente align-right grid-dados-cliente-gray">
+        <div class="col">
+          <a href="#setor">
+            <button type="submit" class="btn btn-primary mb-3" onclick="gerarGrafico()">Comparar com outras empresas</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div> -->
+   <!-- Dados do cliente -->
+
+  <!----------------------------------------------------->
+
+  
+  
+  
+
+
+
+
+      <!----------------------------------------------------->
+
+      <!----------------------------------------------------->
+
+
+
+
+      <div class="container">
+        <div class="row align-items-center" style="display: block;">   
+          <h3 class="title-page padding-top-50">Descrição dos indicadores</h3>  
+      <div class="card">
+        <div id="tpAF-" class="card-body">
+          <strong>Alavancagem financeira</strong> evidencia o grau de endividamento e o risco <strong>financeiro</strong> demonstrando a relação de capital próprio (Patrimônio Líquido) e de terceiros (Passivo).
+        </div>
+      </div>
+      <div class="card">
+        <div id="tpLC-" class="card-body">
+          <strong>Liquidez corrente</strong> é calculada dividindo-se a soma dos direitos a curto prazo da empresa (contas de caixa, bancos, estoques e clientes a receber) pela soma das dívidas a curto prazo (empréstimos, financiamentos, impostos e fornecedores a pagar). Ela representa a capacidade de pagamento no curto prazo.
+        </div>
+      </div>
+      <div class="card">
+        <div id="tpML-" class="card-body">
+          <strong>Margem líquida</strong>, é o valor que sobra aos sócios da empresa pelo serviço prestado ou produto vendido. Ela mostra qual é o lucro <strong>líquido</strong> para cada unidade de venda da empresa ou o lucro <strong>líquido</strong> por período, a depender do objetivo.
+          Para encontrar a <strong>margem líquida</strong>, é preciso dividir o lucro pela receita total e, em seguida, multiplicar por 100.
+        </div>
+      </div> 
+      <div class="card">
+        <div id="tpMO-" class="card-body">
+          <strong>Margem operacional</strong> é o indicador de resultado operacional da empresa. Ao dividir o lucro bruto pela receita total do negócio, você obterá a margem de lucro bruto.
+        </div>
+      </div>
+    </div>        
+  </div>
+  <div id="tpC-" class="card-body"></div>
+  <div id="tpLL-" class="card-body"></div>
+
+  <!---->
+  <div class="row align-items-center margin-bottom-40 margin-top-40">
+    <h5 class="title-page-2">
+      Gostaria de saber mais sobre sua posição no mercado?
+    </h5>
+
+    <div class="row align-items-center">
+      <div class="col next vertical-img">
+        <img src="right-arrow.png" style="width: 22px;" />
+      </div>
+    </div>
+
+    <div class="align-items-center">
+      <p style="text-align: center;">
+      <a href="#cta">
+        <button class="btn btn-primary" type="button">
+          Fale com um consultor
+        </button>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  
+
+  <!---->
+  
+
+  <div class="container" id="tutorial">
+    <div class="load" style="display: none;"> <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span> </div>
+    <div class="row align-items-center">
+      <div class="col">
+  <img src="print.png" style="position: absolute; visibility: collapse; width: 5rem;" />
+        <h4 class=""> O que é?</h4>
+          <p id="textSegmento">
+            A Smart Data é responsável por uma curadoria dinâmica de dados empresariais atualizados. Nossa ferramenta permite que você faça uma análise comparativa de mercado, a partir de informações públicas que possibilitam um aprofundamento no enfoque de desempenho da empresa.
+          </p>
+
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <h4 class=""> Como funciona?</h4>
+          <p id="textSegmento" style="display: block;">Compare os indicadores de desempenho de sua empresa aos de outras que atuam dentro do mesmo segmento.  
+
+            Este é um recorte de mercado para benchmark, não podendo ser considerada uma média, mas uma base para analisar o desempenho do seu negócio. 
+            </p>
+      </div>
+    </div>
+    <div class="row align-items-center padding-top-50" >
+      <div class="">
+        <video width="100%" height="auto" controls="controls" autoplay="autoplay" style="border: 1px #000000 solid;">
+          <source src="https://smartie.com.br/smart-data/video/tutorial_smart_data.MP4" type="video/mp4">
+          <object data="" width="100%" height="auto">
+          <embed width="100%" height="auto" src="https://smartie.com.br/smart-data/video/tutorial_smart_data.MP4">
+          </object>
+        </video>
+      </div>      
+    </div>
+  </div>
+
+<!---->
+
+  
+  <div id="cta">
+    <div class="rowCta ">
+      <div class="col-md-12">
+        <h4 class="container align-items-center font-dm-sans">
+          <p>O que você achou dos indicadores?</p> 
+          <p>Sua empresa esta abaixo ou acima da média de mercado?</p>
+          <p>Entender bem a situação da sua empresa é fundamental para desenhar o seu Planejamento Estratégico, por exemplo.</p>
+          <p>Gostaria de entender como podemos de ajudar com a geração de valor estratégico, entre em contato com um de nossos consultores!</p>
+        </h4>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4" style="text-align: left;">
+        <div role="main" id="smart-data-form">
+          <!-- O iframe com o formulário incorporado -->
+          <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=4aGwfiV_CUqYiFgwQIWEicKhDOvOfHdCjNeDFpDxVPJUMUZQWDJBUk9ETExUWFBaTlFMMEkwRldTMS4u&embed=true"
+                  allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen>
+          </iframe>
+        </div>
+
+        <!--Forms CORS Problem
+        <div role="main" id="smart-data-cb9a3898679e489d9b83"></div>
+        <script type="text/javascript" src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"></script>
+        <script type="text/javascript"> new RDStationForms('smart-data-cb9a3898679e489d9b83', 'UA-41177774-1').createForm();</script> 
+        -->
+        <!-- <a class="" id="rd-button-joq3m2m7" href="mailto:mercio@smartie.com.br?subject=Gostaria%20de%20dados%20mais%20consolidados">
+          Quero falar com um consultor
+        </a> -->
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+
+  <section class="duvidas">
+    <a href="#tutorial" title="Tem alguma dúvida sobre como utilizar a ferramenta?">
+      <img src="interrogacao.png" alt="Descrição da imagem" id="interrogacao">
+    </a>
+  </section>
+
+  
+
+
+  
+  <div id="footer">
+    <div class="rowCta align-items-center">
+      <div class="col">
+        <h6 class="">
+          <img src="smart_branco.png">  © 2021 | Todos os Direitos Reservados.
+        </h2>          
+      </div>
+    </div>
+  </div>
+
+  
+    
+    <script type="text/javascript" src="data.js"></script>   
+    <script type="text/javascript" src="charts.js"></script>
+    <script type="text/javascript" src="input.mask.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".money").inputmask('decimal', {
+                        'alias': 'numeric',
+                        'groupSeparator': '.',
+                        'autoGroup': true,
+                        'digits': 2,
+                        'radixPoint': ",",
+                        'digitsOptional': false,
+                        'allowMinus': false,
+                        'prefix': '',
+                        'placeholder': '0,00'
+            });
+
+            $('#btnCamposClientes').click(function(){
+
+              if($('.box-campos-cliente').is(':visible')){
+                $('.box-campos-cliente').hide("slow");
+              }
+              else{
+                $('.box-campos-cliente').show("slow");
+              }
+
+
+            })
+
+        });
+    
+      //getParamUrl();
+
+      $(window).on("throttledresize", function (event) {
+          var options = {
+              width: '100%',
+              height: '100%'
+          };
+
+          var data = google.visualization.arrayToDataTable([]);
+          drawChart(data, options);
+      });
+
+      zeroChart();
+      //startArrayCharts();
+
+      // setTimeout(function(){
+      //   $('.load').hide();
+      // }, 4000)
+
+      /*
+      setTimeout(function(){ 
+        
+        for(x = 1; x < 5; x++){
+            console.log(x)
+            drawChart(x);
+        }
+
+      }, 3000);
+      */
+
+      
+      
+      
+      </script>      
+      <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/dbb056cf-3be3-4915-8efe-7f1ced84a1a9-loader.js" ></script>
+
+
+
+</body>
+</html>
