@@ -1,0 +1,483 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
+body{
+    font-family: 'DM Sans', sans-serif;
+}
+
+h3{
+    font-size: 2.0rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.35;
+    font-family: 'DM Serif Display', serif;
+}
+
+h4{
+    font-size: 1.5rem;
+    margin-bottom: 1px;
+    margin-top: 5px;
+    /*margin-top: 2.5rem;
+    margin-bottom: 2.5rem;*/
+    font-weight: 300;
+    line-height: 1.35;
+    font-family: 'DM Serif Display', serif;
+}
+
+h5{
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    font-weight: 300;
+    line-height: 1.35;
+    font-family: 'DM Serif Display', serif;
+}
+
+
+
+h6{
+    font-weight: 100;
+    line-height: 1.35;
+    font-family: 'DM Serif Display', serif;
+}
+
+.font-dm-sans{
+    font-family: 'DM Sans', sans-serif !important;
+}
+
+
+.chart {
+    width: 100%; 
+    min-height: 450px;
+  }
+
+.banner{
+    /* background-image: linear-gradient(to bottom, rgb(0 0 0 / 87%) 89%, rgba(0,0,0,0.61) 100%), url(https://d335luupugsy2.cloudfront.net/cms/files/5697/1550510609/$y3k61h0util); */
+    background-image: linear-gradient(to bottom, rgb(0 0 0 / 60%) 89%, rgb(0 0 0) 100%), url(banner-1.jpg);
+    background-position-x: 100%;
+    background-position-y: 73%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    border-bottom-style: none;
+    border-color: #BBBBBB;
+    border-left-style: none;
+    border-radius: 0px;
+    border-right-style: none;
+    border-top-style: none;
+    border-width: 0px;
+}
+
+.banner-container{
+    padding-left: 40px;
+    padding-top: 35px;
+    padding-bottom: 30px;
+}
+
+.banner-title{
+    color: white;
+    font-weight: 300;
+    font-size: 3.5rem;
+    margin-bottom: 0.75em;
+    text-align: center;
+    width: 100%;
+    font-family: 'DM Serif Display', serif;
+}
+
+.banner-title img {
+    width: auto;
+    height: 300px; /* Ajuste conforme necessário */
+}
+
+#logo-smart-data {
+    width: auto;
+    height: 300px;
+}
+
+.subtitulo {
+    display: block;
+    text-align: center;
+}
+
+.duvidas {
+    position: absolute;
+    position: fixed;
+    z-index: 99;
+    bottom: 3%;
+    right: 2%;
+    border-radius: 100%;
+    display: flex;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, .25);
+    transition: all .3s ease-in-out;
+}
+
+#interrogacao {
+    width: 87px;
+    height: 87px;
+}
+
+/* Media query para resoluções móveis */
+@media (max-width: 767px) {
+    .banner-title img {
+        height: 125px;
+    }
+    #logo-smart-data {
+        height: 125px;
+    }
+
+    .duvidas {
+        bottom: 10%;
+        right: 5%;
+    }
+
+    #interrogacao {
+        width: 40px;
+        height: 40px;
+    }
+    
+    #col-1-3{
+            display: none;
+    }
+
+    #col-2-3{
+            display: none;
+    }
+
+    #col-3-3{
+            display: none;
+    }
+
+    #col-4-3{
+            display: none;
+    }
+
+    #col-5-3{
+            display: none;
+    }
+
+    #col-6-3{
+            display: none;
+    }
+
+    #col-7-3{
+            display: none;
+    }
+
+    #col-8-3{
+            display: none;
+    }
+
+    #col-9-3{
+            display: none;
+    }
+    
+
+}
+
+.title-page{
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.title-page-2{
+    font-weight: 300;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.chart-title{
+    /* font-weight: 300; */
+    font-size: 1.0rem;
+    /* margin-bottom: 1px; */
+    text-align: center;
+    width: 100%;
+}
+.margin-title{
+    margin-bottom: 1px;
+    margin-top: 5px;
+}
+
+
+
+
+.container {
+    /* display: flex; */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1080px;
+}
+
+.padding-bottom-100{
+    padding-bottom: 100px;
+}
+
+.padding-top-50{
+    padding-top: 50px;
+}
+
+.align-right {
+    text-align: right!important;
+}
+
+#tpML{
+    display: none;
+}
+
+#tpMO{
+    display: none;
+}
+
+#tpEBITIDA{
+    display: none;
+}
+
+#tpLC{
+    display: none;
+}
+
+#tpAF{
+    display: none;
+}
+
+#cta{
+    margin-top: 50px;
+    background-image: linear-gradient(to bottom, rgba(38,38,36,0.79) 0%, rgba(38,38,36,0.79) 100%), url(https://d335luupugsy2.cloudfront.net/cms/files/5697/1550601675/$u240tehpcw);
+    background-position-x: 100%;
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    border-bottom-style: none;
+    border-color: #BBBBBB;
+    border-left-style: none;
+    border-radius: 0px;
+    border-right-style: none;
+    border-top-style: none;
+    border-width: 0px;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.rowCta {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);    
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#rd-button-joq3m2m7 {
+    -ms-flex-align: center;
+    -ms-flex-direction: column;
+    -ms-flex-pack: center;
+    align-items: center;
+    align-self: flex-start;
+    background-color: #ffc400;
+    border-bottom-style: none;
+    border-color: #000000;
+    border-left-style: none;
+    border-radius: 100px;
+    border-right-style: none;
+    border-top-style: none;
+    border-width: 0px;
+    color: #000000;
+    cursor: pointer;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: bold;
+    height: 70px;
+    justify-content: center;
+    line-height: 1.42857;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    max-width: 527px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+#btn-whatsApp {
+    position: absolute;
+    right: 2px;
+    border-radius: 0!important;
+    background: transparent url(https://d335luupugsy2.cloudfront.net/cms/files/1446/1588875979/$5u0ndp8vgxo) center center no-repeat;
+    z-index: 900;
+    box-shadow: none;
+    outline: none;
+    width: 60px !important;
+    height: 61px !important;
+    background-size: 60px 60px !important;
+    cursor: pointer;
+    border: 0 !important;
+    margin-top: -40px;
+    margin-right: 10px;
+}
+
+.flex{
+    display: flex;
+}
+
+#footer {
+    background-color: rgba(0,0,0,1);
+    border-bottom-style: none;
+    border-color: #000000;
+    border-left-style: none;
+    border-radius: 0px;
+    border-right-style: none;
+    border-top-style: none;
+    border-width: 1px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.5rem;
+    vertical-align: middle;
+}
+
+#footer img{
+    width: 100px;
+}
+
+.load{
+    width:300px;
+    height:300px;
+    position:absolute;
+    top: 58%;
+    left: 45%;
+    color: #151515c7;
+}
+
+.listEmpresas{
+    padding: 10px 10px;
+}
+
+.graficos-border{
+    /* border: #80808038 1px solid; */
+    /* border-radius: 10px;
+    padding-bottom: 10px; */    
+    padding-top: 10px;
+    margin: 2px 2px;
+    height: 120px;
+    text-align: center;
+}
+
+.graficos-box{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-left:  #80808038 1px dashed;
+}
+
+.grid-color-gray{
+    background-color: #80808008;
+    border-top: #80808038 1px dashed;
+    border-bottom: #80808038 1px dashed;
+}
+
+.grid-color-botton-gray{
+    border-bottom: #80808038 1px dashed;
+}
+
+.grid-dados-cliente{
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.grid-dados-cliente-gray{
+    background-color: #80808008;
+}
+
+.margin-auto{
+    margin: auto !important;
+}
+
+.box-campos-cliente{
+    /* border: gray 1px solid;
+    border-radius: 9px;
+    padding-top: 20px; */
+    padding-bottom: 0px;
+    margin-bottom: 50px;
+    display: none;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.margin-bottom-40{
+    margin-bottom: 40px;
+}
+
+.margin-top-40 {
+    margin-top: 40px;
+}
+
+.next{
+    text-align: center;
+    height: 45px;
+}
+
+.vertical-img{
+    transform: rotate(90deg);
+}
+
+.msg-chart-cliente{
+    font-size: 1.0rem;
+    text-align: center;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #FFC600;
+    border-color: #FFC600;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #FFC600;
+    border-color: #FFC600;
+}
+
+#smart-data-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      Width: 100%;
+      max-width: 800px; /* Limita o tamanho máximo */
+      padding: 0;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Adiciona sombra suave */
+      border-radius: 8px;
+      overflow: hidden;
+}
+
+iframe {
+  text-align: center;
+  width: 1200px;
+  height: 80vh; /* Ocupa 80% da altura da tela */
+  border: none; /* Remove borda do iframe */
+}
